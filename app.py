@@ -25,6 +25,12 @@ def guardar_mensagem(nome, mensagem):
        f.write(f"{nome}: {mensagem}\n")
 
 
+def apagar_mensagens():
+    """Apaga todo o conteúdo do ficheiro de dados."""
+    with open(FICHEIRO_DADOS, 'w', encoding='utf-8') as f:
+        pass
+
+
 # --- Aqui estão as rotas da Aplicação ---
 @app.route("/", methods=['GET', 'POST'])
 def livro_mensagem():
@@ -45,7 +51,15 @@ def livro_mensagem():
    return render_template("index.html", mensagens=mensagens)
 
 
-# @app.route("/limpar", methods=['POST'])
+@app.route("/confirmar-limpeza", methods=['GET'])
+def confirmar_limpeza():
+    return render_template("confirmar.html")
+
+
+@app.route("/limpar", methods=['POST'])
+def limpar_dados():
+    apagar_mensagens()
+    return redirect(url_for('livro_mensagem'))
 
 
 if __name__ == "__main__":

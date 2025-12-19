@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirmar Limpeza - Livro de Mensagem</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="modal-card">
+      <h1 class="modal-title">Tem a certeza?</h1>
+      <p class="modal-text">
+        Esta ação irá apagar todas as mensagens guardadas no ficheiro
+        permanentemente.
+      </p>
+
+      <div class="button-group">
+        <form
+          action="{{ url_for('limpar_dados') }}"
+          method="POST"
+          style="flex: 1"
+        >
+          <button type="submit" class="btn btn-danger" style="width: 100%">
+            Sim, Apagar Tudo
+          </button>
+        </form>
+
+        <a href="{{ url_for('livro_mensagem') }}" class="btn btn-secondary">
+          Cancelar
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
